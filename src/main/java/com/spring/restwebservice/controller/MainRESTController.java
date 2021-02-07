@@ -4,10 +4,7 @@ import com.spring.restwebservice.dao.EmployeeDAO;
 import com.spring.restwebservice.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +34,16 @@ public class MainRESTController {
         return employeeDAO.getAllEmployees();
     }
 
-
+    // URL:
+    // http://localhost:8080/employee/{empNo}
+    // http://localhost:8080/employee/{empNo}.xml
+    // http://localhost:8080/employee/{empNo}.json
+    @RequestMapping(value = "/employee/{empNo}", //
+            method = RequestMethod.GET, //
+            produces = { MediaType.APPLICATION_JSON_VALUE, //
+                    MediaType.APPLICATION_XML_VALUE })
+    @ResponseBody
+    public Employee getEmployee(@PathVariable("empNo") String empNo) {
+        return employeeDAO.getEmployee(empNo);
+    }
 }
