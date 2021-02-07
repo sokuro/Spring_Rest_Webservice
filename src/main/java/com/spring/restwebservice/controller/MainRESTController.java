@@ -75,4 +75,15 @@ public class MainRESTController {
         return employeeDAO.updateEmployee(emp);
     }
 
+    // URL:
+    // http://localhost:8080/employee/{empNo}
+    @RequestMapping(value = "/employee/{empNo}", //
+            method = RequestMethod.DELETE, //
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    @ResponseBody
+    public void deleteEmployee(@PathVariable("empNo") String empNo) {
+        System.out.println("(Service Side) Deleting employee: " + empNo);
+        employeeDAO.deleteEmployee(empNo);
+    }
+
 }
