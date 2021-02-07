@@ -46,4 +46,19 @@ public class MainRESTController {
     public Employee getEmployee(@PathVariable("empNo") String empNo) {
         return employeeDAO.getEmployee(empNo);
     }
+
+    // URL:
+    // http://localhost:8080/employee
+    // http://localhost:8080/employee.xml
+    // http://localhost:8080/employee.json
+    @RequestMapping(value = "/employee", //
+            method = RequestMethod.POST, //
+            produces = { MediaType.APPLICATION_JSON_VALUE, //
+                    MediaType.APPLICATION_XML_VALUE })
+    @ResponseBody
+    public Employee addEmployee(@RequestBody Employee emp) {
+        System.out.println("(Service Side) Creating employee: " + emp.getEmpNo());
+        return employeeDAO.addEmployee(emp);
+    }
+
 }
