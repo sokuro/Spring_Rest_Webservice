@@ -61,4 +61,18 @@ public class MainRESTController {
         return employeeDAO.addEmployee(emp);
     }
 
+    // URL:
+    // http://localhost:8080/employee
+    // http://localhost:8080/employee.xml
+    // http://localhost:8080/employee.json
+    @RequestMapping(value = "/employee", //
+            method = RequestMethod.PUT, //
+            produces = { MediaType.APPLICATION_JSON_VALUE, //
+                    MediaType.APPLICATION_XML_VALUE })
+    @ResponseBody
+    public Employee updateEmployee(@RequestBody Employee emp) {
+        System.out.println("(Service Side) Editing employee: " + emp.getEmpNo());
+        return employeeDAO.updateEmployee(emp);
+    }
+
 }
